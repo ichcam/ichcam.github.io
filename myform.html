@@ -1,27 +1,65 @@
 <html>
-    <title>Muhammad Hisyam - 0521194200010</title>
-    <head>
-            JQUERY
-    </head>
-    <style>
-        .label {float: left; width: 150px; }
-        .infobox {width: 150px; }
-        .error { color: red; padding-left: 10px; }
-        .submit { margin-left: 150px; margin-top: 10px;}
-    </style>
-    <body>
-        <form>
-            <span class="label">Select the Food Item </span>
-            <select id="food" class="infobox">
-            <option value="0">Select a Food</option>
-            <option value="Pizza $5">Pizza $5</option>
-            <option value="HotDog $2">HotDog $2</option>
+<title>Muhammad Hisyam - 0521194200010</title>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<style>
+    .label {
+        float: left;
+        width: 150px;
+    }
+
+    .infobox {
+        width: 150px;
+    }
+
+    .error {
+        color: red;
+        padding-left: 10px;
+    }
+
+    .submit {
+        margin-left: 150px;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <script>
+        $(document).ready(function () {
+            $('.error').hide(); // error notification is hide
+            $('.submit').click(function (event) {
+                var count = $('select option:selected').val();
+                if (count == 0) { 
+                    $('p.result').hide(); // result will be hide
+                    $('.error').show(); // if the value is 0, error notification will be shown
+                }
+                else {
+                    $('.error').hide(); // error will be hide
+                    $('p.result').show(); // result value will be show
+                    $('p.result').text('You have selected ' + $('select option:selected').text()); // showing results value
+                }
+                event.preventDefault(); //
+            });
+        });
+    </script>
+    <form>
+        <span class="label">Select the Food Item </span>
+        <select id="food" class="infobox">
+            <option value="0">Select a Food</option> // "0" is the count value of not selected items
+            <option value="Pizza $5">Pizza $5</option> 
+            <option value="HotDog $2">HotDog $2</option> 
             <option value="Coke $1">Coke $1</option>
             <option value="French Fries $3">French Fries $3</option>
-            </select>
-            <p class="error">You have not selected any Option</p>
-            <p class="result"></p>
-            <input class="submit" type="submit" value="Submit">
-            </form>
-    </body>
+        </select>
+        <p class="error">You have not selected any Option</p> <!-- class error will show if the count value is 0 or equal to "select food" option  -->
+        <p class="result"></p>
+        <input class="submit" type="submit" value="Submit">
+        </form>
+</body>
+
+
 </html>
